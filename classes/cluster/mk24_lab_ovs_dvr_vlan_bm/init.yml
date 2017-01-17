@@ -22,21 +22,26 @@ parameters:
     fuel_compute_node01_deploy_address: 172.18.173.112
     fuel_compute_node02_deploy_address: 172.18.173.113
     fuel_compute_node03_deploy_address: 172.18.173.114
+    fuel_compute_node04_deploy_address: 172.18.173.115
 
     # Libvirt networks for Fuel virtualized control plane
     fuel_libvirt_control_net_kvm01: 192.168.199.0
     fuel_libvirt_control_net_kvm02: 192.168.199.32
     fuel_libvirt_control_net_kvm03: 192.168.199.64
+    fuel_libvirt_control_net_kvm04: 192.168.199.128
 
     fuel_libvirt_control_gw_kvm01: 192.168.199.1
     fuel_libvirt_control_gw_kvm02: 192.168.199.33
     fuel_libvirt_control_gw_kvm03: 192.168.199.65
+    fuel_libvirt_control_gw_kvm04: 192.168.199.129
     fuel_libvirt_control_dhcp_pool_netmask_kvm01: 255.255.255.224
     fuel_libvirt_control_dhcp_pool_netmask_kvm02: 255.255.255.224
     fuel_libvirt_control_dhcp_pool_netmask_kvm03: 255.255.255.224
+    fuel_libvirt_control_dhcp_pool_netmask_kvm04: 255.255.255.224
     fuel_libvirt_control_net_prefix_kvm01: 27
     fuel_libvirt_control_net_prefix_kvm02: 27
     fuel_libvirt_control_net_prefix_kvm03: 27
+    fuel_libvirt_control_net_prefix_kvm04: 27
 
     fuel_libvirt_control_dhcp_pool_start_kvm01: 192.168.199.2
     fuel_libvirt_control_dhcp_pool_end_kvm01: 192.168.199.30
@@ -44,10 +49,13 @@ parameters:
     fuel_libvirt_control_dhcp_pool_end_kvm02: 192.168.199.62
     fuel_libvirt_control_dhcp_pool_start_kvm03: 192.168.199.66
     fuel_libvirt_control_dhcp_pool_end_kvm03: 192.168.199.90
+    fuel_libvirt_control_dhcp_pool_start_kvm04: 192.168.199.130
+    fuel_libvirt_control_dhcp_pool_end_kvm04: 192.168.199.134
 
     fuel_compute_node01_address: 10.167.4.241
     fuel_compute_node02_address: 10.167.4.242
     fuel_compute_node03_address: 10.167.4.243
+    fuel_compute_node04_address: 10.167.4.244
 
     # openstack service addresses
     openstack_proxy_address: 10.167.4.80

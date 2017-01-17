@@ -31,3 +31,8 @@ parameters:
           names:
           - kvm03
           - kvm03.${_param:cluster_domain}
+        kvm04:
+          address: ${_param:fuel_compute_node04_address}
+          names:
+          - kvm04
+          - kvm04.${_param:cluster_domain}

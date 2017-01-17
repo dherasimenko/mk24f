@@ -68,6 +68,15 @@ parameters:
             fuel_libvirt_control_dhcp_pool_end: ${_param:fuel_libvirt_control_dhcp_pool_end_kvm03}
             linux_system_codename: xenial
 
+        fuel_compute_node04:
+          params:
+            deploy_address: ${_param:fuel_compute_node04_deploy_address}
+            fuel_libvirt_control_dhcp_pool_gw: ${_param:fuel_libvirt_control_gw_kvm04}
+            fuel_libvirt_control_dhcp_pool_netmask: ${_param:fuel_libvirt_control_dhcp_pool_netmask_kvm04}
+            fuel_libvirt_control_dhcp_pool_start: ${_param:fuel_libvirt_control_dhcp_pool_start_kvm04}
+            fuel_libvirt_control_dhcp_pool_end: ${_param:fuel_libvirt_control_dhcp_pool_end_kvm04}
+            linux_system_codename: xenial
+
         openstack_proxy_node01:
           params:
             keepalived_vip_priority: 101
