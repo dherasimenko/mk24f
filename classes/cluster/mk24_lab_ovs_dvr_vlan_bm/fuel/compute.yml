@@ -14,7 +14,7 @@ parameters:
       size: #RAM 4096,8192,16384,32768,65536
         openstack.control:
           cpu: 8
-          ram: 32768
+          ram: 16384
           disk_profile: small
           net_profile: default
         openstack.database:
@@ -24,12 +24,12 @@ parameters:
           net_profile: default
         openstack.message_queue:
           cpu: 8
-          ram: 32768
+          ram: 8192
           disk_profile: small
           net_profile: default
         openstack.proxy:
           cpu: 4
-          ram: 8192
+          ram: 4096
           disk_profile: small
           net_profile: default
         openstack.gateway:
