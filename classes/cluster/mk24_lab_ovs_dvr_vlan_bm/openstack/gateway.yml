@@ -33,6 +33,10 @@ parameters:
           type: slave
           mtu: 9000
           master: bond0
+          lacp_rate: slow
+          hashing-algorithm: layer2+3
+          mimon: 100
+
         bond0:
           enabled: true
           proto: manual
@@ -42,8 +46,11 @@ parameters:
           use_interfaces:
           - ${_param:primary_second_nic}
           slaves: ${_param:primary_second_nic}
-          mode: active-backup
           mtu: 9000
+          mode: 802.3ad
+          lacp_rate: slow
+          hashing-algorithm: layer2+3
+          mimon: 100
         br-floating:
           enabled: true
           type: ovs_bridge
