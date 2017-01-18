@@ -26,10 +26,6 @@ parameters:
     cluster_local_address: ${_param:single_address}
     cluster_node01_hostname: mon01
     cluster_node01_address: ${_param:stacklight_monitor_node01_address}
-    cluster_node02_hostname: mon02
-    cluster_node02_address: ${_param:stacklight_monitor_node02_address}
-    cluster_node03_hostname: mon03
-    cluster_node03_address: ${_param:stacklight_monitor_node03_address}
   linux:
     network:
       interface:
