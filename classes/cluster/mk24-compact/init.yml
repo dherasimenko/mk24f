@@ -1,0 +1,74 @@
+classes:
+- system.linux.system.single
+- system.openssh.server.team.tcpcloud
+- system.openssh.server.team.qa_scale
+- cluster.mk24-compact.fuel
+- cluster.mk24-compact.openstack
+- cluster.mk24-compact.stacklight
+- cluster.mk24-compact.stacklight.client
+parameters: 
+  _param:
+    cluster_domain: mk24-compact.cluster
+    reclass_data_revision: master
+    cluster_name: mk24-compact
+    cluster_public_host: 10.167.4.80
+    # fuel service addresses
+
+    fuel_config_deploy_address: 172.17.32.31  
+
+    fuel_compute_node01_deploy_address: 172.17.32.112
+    fuel_compute_node02_deploy_address: 172.17.32.113
+    fuel_compute_node03_deploy_address: 172.17.32.114
+    fuel_compute_node04_deploy_address: 172.17.32.115
+
+    fuel_compute_node01_address: 10.167.4.241
+    fuel_compute_node02_address: 10.167.4.242
+    fuel_compute_node03_address: 10.167.4.243
+    fuel_compute_node04_address: 10.167.4.244
+
+    # openstack service addresses
+    openstack_proxy_address: 10.167.4.80
+    openstack_proxy_node01_address: 10.167.4.81
+    openstack_proxy_node02_address: 10.167.4.82
+    openstack_control_address: 10.167.4.10
+    openstack_control_node01_address: 10.167.4.11
+    openstack_control_node02_address: 10.167.4.12
+    openstack_control_node03_address: 10.167.4.13
+    openstack_database_address: 10.167.4.50
+    openstack_database_node01_address: 10.167.4.51
+    openstack_database_node02_address: 10.167.4.52
+    openstack_database_node03_address: 10.167.4.53
+    openstack_message_queue_address: 10.167.4.40
+    openstack_message_queue_node01_address: 10.167.4.41
+    openstack_message_queue_node02_address: 10.167.4.42
+    openstack_message_queue_node03_address: 10.167.4.43
+    # stacklight service addresses
+    stacklight_monitor_address: 10.167.4.70
+    stacklight_monitor_node01_address: 10.167.4.71
+    stacklight_log_address: 10.167.4.60
+    stacklight_log_node01_address: 10.167.4.61
+    stacklight_telemetry_address: 10.167.4.85
+    stacklight_telemetry_node01_address: 10.167.4.86
+
+    # openstack compute
+    openstack_compute_node01_single_address: 10.167.4.101
+    openstack_compute_node02_single_address: 10.167.4.102
+
+    # openstack gateway
+    openstack_gateway_address: 10.167.4.253
+
+    # Interface definitions
+    linux_dhcp_interface:
+      enabled: true
+      type: eth
+      proto: dhcp
+    linux_single_interface:
+      enabled: true
+      type: eth
+      proto: static
+      address: ${_param:single_address}
+      netmask: 255.255.255.0
+      name_servers:
+        - 172.17.32.3
+        - 8.8.8.8
+        - 8.8.4.4

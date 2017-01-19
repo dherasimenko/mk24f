@@ -10,7 +10,7 @@ parameters:
           - cluster.${_param:cluster_name}.stacklight.log_curator
           params:
             salt_master_host: ${_param:reclass_config_master}
-            linux_system_codename: xenial
+            linux_system_codename: trusty
             single_address: ${_param:stacklight_log_node01_address}
             keepalived_vip_priority: 103
         stacklight_log_node02:
@@ -20,7 +20,7 @@ parameters:
           - cluster.${_param:cluster_name}.stacklight.log
           params:
             salt_master_host: ${_param:reclass_config_master}
-            linux_system_codename: xenial
+            linux_system_codename: trusty
             single_address: ${_param:stacklight_log_node02_address}
             keepalived_vip_priority: 102
         stacklight_log_node03:
@@ -30,6 +30,6 @@ parameters:
           - cluster.${_param:cluster_name}.stacklight.log
           params:
             salt_master_host: ${_param:reclass_config_master}
-            linux_system_codename: xenial
+            linux_system_codename: trusty
             single_address: ${_param:stacklight_log_node03_address}
             keepalived_vip_priority: 101
