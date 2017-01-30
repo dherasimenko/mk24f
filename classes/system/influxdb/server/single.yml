@@ -7,7 +7,7 @@ parameters:
       repo:
         influxdb:
           enabled: true
-          source: 'deb https://repos.influxdata.com/ubuntu trusty stable'
+          source: 'deb https://repos.influxdata.com/ubuntu xenial stable'
           key_url: 'https://repos.influxdata.com/influxdb.key'
   influxdb:
     server:

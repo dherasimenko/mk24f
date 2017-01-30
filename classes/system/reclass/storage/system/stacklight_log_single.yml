@@ -1,0 +1,15 @@
+parameters:
+  reclass:
+    storage:
+      node:
+        stacklight_log_node01:
+          name: log01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.stacklight.log
+          - cluster.${_param:cluster_name}.stacklight.log_curator
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:stacklight_log_node01_address}
+            keepalived_vip_priority: 103

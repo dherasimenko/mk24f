@@ -1,9 +1,9 @@
 classes:
-- cluster.mk24-compact.fuel.config
+- cluster.mk24_lab_ovs_dvr_vlan_bm.fuel.config
 parameters:
   _param:
     salt_master_base_environment: prd
-    linux_system_codename: trusty
+    linux_system_codename: xenial
   linux:
     system:
       name: cfg01

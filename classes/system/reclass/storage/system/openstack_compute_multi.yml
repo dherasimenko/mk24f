@@ -10,7 +10,7 @@ parameters:
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
-            single_address: 172.16.10.105
+            single_address: 172.17.33.106
         openstack_compute_node02:
           name: cmp02
           domain: ${_param:cluster_domain}
@@ -19,4 +19,14 @@ parameters:
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
-            single_address: 172.16.10.106
+            single_address: 172.17.33.107
+        openstack_compute_node03:
+          name: cmp03
+          domain: ${_param:cluster_domain}
+          classes: 
+          - cluster.${_param:cluster_name}.openstack.compute
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: 172.17.33.108
+

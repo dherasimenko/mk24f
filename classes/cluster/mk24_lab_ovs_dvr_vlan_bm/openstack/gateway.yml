@@ -1,0 +1,111 @@
+classes:
+- system.linux.system.repo.mos9
+- system.linux.system.repo.saltstack_2016_3_trusty
+- system.linux.system.repo.tcp_extra
+- system.neutron.gateway.cluster
+- cluster.mk24_lab_ovs_dvr_vlan_bm
+- system.linux.network.interface.ovs_lab_dvr
+parameters:
+  _param:
+    interface_mtu: 9000
+    neutron_gateway_dvr: False
+    neutron_gateway_agent_mode: legacy
+    cluster_vip_address: ${_param:openstack_control_address}
+    primary_interface: bond0.1361
+    tenant_interface: bond0.1364
+    external_interface: bond0.1365
+    interface_mtu: 9000
+    tenant_address: 172.17.37.128/27
+    external_address: 172.17.33.1/24
+  neutron:
+    gateway:
+      local_ip: ${_param:single_address}
+      backend:
+        tenant_vlan_range: "1:4094"
+      database:
+        host: ${_param:openstack_database_address}
+      message_queue:
+        host: ${_param:openstack_message_queue_address}
+      notification:
+        driver: messagingv2
+        topics: "notifications,${_param:stacklight_notification_topic}"
+  linux:
+    network:
+      bridge: openvswitch
+      interface:
+        eth0:
+          enabled: true
+          type: eth
+          proto: dhcp
+          name_servers:
+          - 172.17.32.3
+          - 8.8.8.8
+          - 8.8.4.4
+          mtu: 9000
+        eth1:
+          enabled: true
+          type: slave
+          proto: manual
+          mtu: 9000
+          master: bond0
+        eth2:
+          enabled: true
+          type: slave
+          proto: manual
+          mtu: 9000
+          master: bond0
+        eth3:
+          enabled: true
+          type: slave
+          proto: manual
+          mtu: 9000
+          master: bond0
+        eth4:
+          enabled: true
+          type: slave
+          proto: manual
+          mtu: 9000
+          master: bond0
+        eth5:
+          enabled: true
+          type: slave
+          proto: manual
+          mtu: 9000
+          master: bond0
+        bond0:
+          enabled: true
+          proto: manual
+          type: bond
+          use_interfaces:
+          - eth1
+          - eth2
+          - eth3
+          - eth4
+          - eth5
+          slaves: eth1 eth2 eth3 eth4 eth5
+          mode: 802.3ad
+          lacp_rate: slow
+          hashing-algorithm: layer2+3
+          mimon: 100
+        primary_interface:
+          enabled: true
+          type: vlan
+          proto: manual
+          mtu: 9000
+          use_interfaces:
+          - bond0
+        external_interface:
+          enabled: true
+          type: vlan
+          proto: manual
+          mtu: 9000
+          use_interfaces:
+          - bond0
+        tenant_interface:
+          enabled: true
+          type: vlan
+          proto: manual
+          mtu: 9000
+          use_interfaces:
+          - bond0
+
