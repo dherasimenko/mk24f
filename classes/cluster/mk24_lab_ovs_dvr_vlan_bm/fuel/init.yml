@@ -7,32 +7,32 @@ parameters:
     network:
       host:
         cfg01:
-          address: ${_param:fuel_config_deploy_address}
+          address: ${_param:kvm:config:node01:admin_ip}
           names:
           - cfg01
-          - cfg01.${_param:cluster_domain}
+          - cfg01.${_param:kvm:config:node01:admin_ip}
         cfg:
-          address: ${_param:fuel_config_deploy_address}
+          address: ${_param:kvm:config:node01:admin_ip}
           names:
           - cfg
-          - cfg.${_param:cluster_domain}
+          - cfg.${_param:cluster:domain}
         kvm01:
-          address: ${_param:fuel_compute_node01_address}
+          address: ${_param:kvm:config:node01:admin_ip}
           names:
           - kvm01
-          - kvm01.${_param:cluster_domain}
+          - kvm01.${_param:cluster:domain}
         kvm02:
-          address: ${_param:fuel_compute_node02_address}
+          address: ${_param:kvm:config:node01:admin_ip}
           names:
           - kvm02
-          - kvm02.${_param:cluster_domain}
+          - kvm02.${_param:cluster:domain}
         kvm03:
-          address: ${_param:fuel_compute_node03_address}
+          address: ${_param:kvm:config:node01:admin_ip}
           names:
           - kvm03
-          - kvm03.${_param:cluster_domain}
+          - kvm03.${_param:cluster:domain}
         kvm04:
-          address: ${_param:fuel_compute_node04_address}
+          address: ${_param:kvm:config:node01:admin_ip}
           names:
           - kvm04
-          - kvm04.${_param:cluster_domain}
+          - kvm04.${_param:cluster:domain}

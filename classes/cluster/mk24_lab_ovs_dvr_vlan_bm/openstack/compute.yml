@@ -48,7 +48,7 @@ parameters:
           state_change: vm_and_task_state
       message_queue:
         members:
-          - host: ${_param:openstack_message_queue_node01_address}
+          - host: ${_param:openstack:amqp:node01:mgmt_ip}
           - host: ${_param:openstack_message_queue_node02_address}
           - host: ${_param:openstack_message_queue_node03_address}
       ceph:

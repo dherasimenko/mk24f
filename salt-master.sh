@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ xenial main security extra tcp tcp-salt" > /etc/apt/sources.list
 wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
 apt-get clean

@@ -5,27 +5,27 @@ parameters:
 ### monitoring
         monitoring_service_node01:
           name: mon01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.monitoring.server
+          - cluster.${_param:cluster:name}.monitoring.server
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
             single_address: ${_param:monitoring_service_node01_address}
         monitoring_service_node02:
           name: mon02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.monitoring.server
+          - cluster.${_param:cluster:name}.monitoring.server
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
             single_address: ${_param:monitoring_service_node02_address}
         monitoring_service_node03:
           name: mon03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.monitoring.server
+          - cluster.${_param:cluster:name}.monitoring.server
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -34,9 +34,9 @@ parameters:
 ### opencontrail analytics
         opencontrail_analytics_node01:
           name: nal01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.opencontrail.analytics
+          - cluster.${_param:cluster:name}.opencontrail.analytics
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -45,9 +45,9 @@ parameters:
             opencontrail_database_id: 1
         opencontrail_analytics_node02:
           name: nal02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:  
-          - cluster.${_param:cluster_name}.opencontrail.analytics
+          - cluster.${_param:cluster:name}.opencontrail.analytics
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -56,9 +56,9 @@ parameters:
             opencontrail_database_id: 2
         opencontrail_analytics_node03:
           name: nal03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.opencontrail.analytics
+          - cluster.${_param:cluster:name}.opencontrail.analytics
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -69,9 +69,9 @@ parameters:
 ### opencontrail network node
         opencontrail_control_node01:
           name: ntw01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.opencontrail.control
+          - cluster.${_param:cluster:name}.opencontrail.control
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -80,9 +80,9 @@ parameters:
             opencontrail_database_id: 1
         opencontrail_control_node02:
           name: ntw02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:  
-          - cluster.${_param:cluster_name}.opencontrail.control
+          - cluster.${_param:cluster:name}.opencontrail.control
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -91,9 +91,9 @@ parameters:
             opencontrail_database_id: 2
         opencontrail_control_node03:
           name: ntw03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.opencontrail.control
+          - cluster.${_param:cluster:name}.opencontrail.control
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -104,9 +104,9 @@ parameters:
 ### neutron gateway
         opencontrail_gateway_node01:
           name: gtw01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.opencontrail.gateway
+          - cluster.${_param:cluster:name}.opencontrail.gateway
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -114,9 +114,9 @@ parameters:
 
         openstack_gateway_node01:
           name: gtw02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.gateway
+          - cluster.${_param:cluster:name}.openstack.gateway
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -125,27 +125,27 @@ parameters:
 ### openstack compute
         openstack_compute_node01:
           name: cmp01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.compute
+          - cluster.${_param:cluster:name}.openstack.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
             single_address: 172.17.33.106
         openstack_compute_node02:
           name: cmp02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.compute
+          - cluster.${_param:cluster:name}.openstack.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
             single_address: 172.17.33.107
         openstack_compute_node03:
           name: cmp03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes: 
-          - cluster.${_param:cluster_name}.openstack.compute
+          - cluster.${_param:cluster:name}.openstack.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -154,9 +154,9 @@ parameters:
 ### openstack controller
         openstack_control_node01:
           name: ctl01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.control
+          - cluster.${_param:cluster:name}.openstack.control
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -166,9 +166,9 @@ parameters:
             rabbitmq_cluster_role: master
         openstack_control_node02:
           name: ctl02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.control
+          - cluster.${_param:cluster:name}.openstack.control
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -178,9 +178,9 @@ parameters:
             rabbitmq_cluster_role: slave
         openstack_control_node03:
           name: ctl03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.control
+          - cluster.${_param:cluster:name}.openstack.control
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -192,10 +192,10 @@ parameters:
 ### openstack database
         openstack_database_node01:
           name: dbs01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
           - service.galera.master.cluster
-          - cluster.${_param:cluster_name}.openstack.database
+          - cluster.${_param:cluster:name}.openstack.database
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -204,10 +204,10 @@ parameters:
             mysql_cluster_role: master
         openstack_database_node02:
           name: dbs02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:  
           - service.galera.slave.cluster
-          - cluster.${_param:cluster_name}.openstack.database
+          - cluster.${_param:cluster:name}.openstack.database
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -216,10 +216,10 @@ parameters:
             mysql_cluster_role: slave
         openstack_database_node03:
           name: dbs03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
           - service.galera.slave.cluster
-          - cluster.${_param:cluster_name}.openstack.database
+          - cluster.${_param:cluster:name}.openstack.database
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -230,9 +230,9 @@ parameters:
 ### openstack amqp
         openstack_message_queue_node01:
           name: msg01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.message_queue
+          - cluster.${_param:cluster:name}.openstack.message_queue
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -241,9 +241,9 @@ parameters:
             rabbitmq_cluster_role: master
         openstack_message_queue_node02:
           name: msg02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:  
-          - cluster.${_param:cluster_name}.openstack.message_queue
+          - cluster.${_param:cluster:name}.openstack.message_queue
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -252,9 +252,9 @@ parameters:
             rabbitmq_cluster_role: slave
         openstack_message_queue_node03:
           name: msg03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.message_queue
+          - cluster.${_param:cluster:name}.openstack.message_queue
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -265,18 +265,18 @@ parameters:
 ### openstack proxy
         openstack_proxy_node01:
           name: prx01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.proxy
+          - cluster.${_param:cluster:name}.openstack.proxy
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
             single_address: ${_param:openstack_proxy_node01_address}
         openstack_proxy_node02:
           name: prx02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.openstack.proxy
+          - cluster.${_param:cluster:name}.openstack.proxy
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -285,9 +285,9 @@ parameters:
 ### baremetal kvm
         fuel_compute_node01:
           name: kvm01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -295,9 +295,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node01_deploy_address}
         fuel_compute_node02:
           name: kvm02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -305,9 +305,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node02_deploy_address}
         fuel_compute_node03:
           name: kvm03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -315,9 +315,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node03_deploy_address}
         fuel_compute_node04:
           name: kvm04
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -325,9 +325,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node04_deploy_address}
         fuel_compute_node05:
           name: kvm05
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -335,9 +335,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node05_deploy_address}
         fuel_compute_node06:
           name: kvm06
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -345,9 +345,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node06_deploy_address}
         fuel_compute_node07:
           name: kvm07
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -355,9 +355,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node07_deploy_address}
         fuel_compute_node08:
           name: kvm08
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -365,9 +365,9 @@ parameters:
             deploy_address: ${_param:fuel_compute_node08_deploy_address}
         fuel_compute_node09:
           name: kvm09
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.fuel.compute
+          - cluster.${_param:cluster:name}.fuel.compute
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -377,10 +377,10 @@ parameters:
 ### staklight log
         stacklight_log_node01:
           name: log01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.log
-          - cluster.${_param:cluster_name}.stacklight.log_curator
+          - cluster.${_param:cluster:name}.stacklight.log
+          - cluster.${_param:cluster:name}.stacklight.log_curator
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -388,10 +388,10 @@ parameters:
             keepalived_vip_priority: 103
         stacklight_log_node02:
           name: log02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.log
-          - cluster.${_param:cluster_name}.stacklight.log_curator
+          - cluster.${_param:cluster:name}.stacklight.log
+          - cluster.${_param:cluster:name}.stacklight.log_curator
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -399,10 +399,10 @@ parameters:
             keepalived_vip_priority: 102
         stacklight_log_node03:
           name: log03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.log
-          - cluster.${_param:cluster_name}.stacklight.log_curator
+          - cluster.${_param:cluster:name}.stacklight.log
+          - cluster.${_param:cluster:name}.stacklight.log_curator
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -412,9 +412,9 @@ parameters:
 ### stacklight monitor
         stacklight_monitor_node01:
           name: mon01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.monitor
+          - cluster.${_param:cluster:name}.stacklight.monitor
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -422,9 +422,9 @@ parameters:
             keepalived_vip_priority: 103
         stacklight_monitor_node02:
           name: mon02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.monitor
+          - cluster.${_param:cluster:name}.stacklight.monitor
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -432,9 +432,9 @@ parameters:
             keepalived_vip_priority: 102
         stacklight_monitor_node03:
           name: mon03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.monitor
+          - cluster.${_param:cluster:name}.stacklight.monitor
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -444,9 +444,9 @@ parameters:
 ### stacklight server
         stacklight_server_node01:
           name: mon01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.server
+          - cluster.${_param:cluster:name}.stacklight.server
           - system.influxdb.server.single
           - system.elasticsearch.client.single
           - system.grafana.client.single
@@ -458,9 +458,9 @@ parameters:
             keepalived_vip_priority: 103
         stacklight_server_node02:
           name: mon02
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.server
+          - cluster.${_param:cluster:name}.stacklight.server
           - system.influxdb.server.single
           - system.elasticsearch.client.single
           - system.grafana.client.single
@@ -472,9 +472,9 @@ parameters:
             keepalived_vip_priority: 102
         stacklight_server_node03:
           name: mon03
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.server
+          - cluster.${_param:cluster:name}.stacklight.server
           - system.influxdb.server.single
           - system.elasticsearch.client.single
           - system.grafana.client.single
@@ -488,9 +488,9 @@ parameters:
 ### stacklight telemetry
         stacklight_telemetry_node01:
           name: mtr01
-          domain: ${_param:cluster_domain}
+          domain: ${_param:cluster:domain}
           classes:
-          - cluster.${_param:cluster_name}.stacklight.telemetry
+          - cluster.${_param:cluster:name}.stacklight.telemetry
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial

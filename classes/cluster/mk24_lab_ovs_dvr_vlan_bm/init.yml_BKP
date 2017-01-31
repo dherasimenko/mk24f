@@ -1,0 +1,82 @@
+# Address plan covered at:
+# https://docs.google.com/spreadsheets/d/17jhct4awbaoXVKp7_SdCbS-DBlikB6oEMb3gzLI4By8/edit#gid=0
+classes:
+- system.linux.system.single
+### openssh users
+#- system.openssh.server.team.tcpcloud
+#- system.openssh.server.team.qa_scale
+#- system.openssh.server.team.mcp_qa
+- cluster.mk24_lab_ovs_dvr_vlan_bm.fuel
+- cluster.mk24_lab_ovs_dvr_vlan_bm.openstack
+### disable stacklight
+#- cluster.mk24_lab_ovs_dvr_vlan_bm.stacklight
+#- cluster.mk24_lab_ovs_dvr_vlan_bm.stacklight.client
+parameters: 
+  _param:
+    cluster_domain: mk24f.cluster
+    reclass_data_revision: master
+    cluster_name: mk24_lab_ovs_dvr_vlan_bm
+    cluster_public_host: 172.17.36.80
+    # fuel service addresses
+
+    fuel_config_deploy_address: 192.168.122.250  # cz8132.bud.mirantis.net
+
+    fuel_compute_node01_deploy_address: 172.17.32.36
+    fuel_compute_node02_deploy_address: 172.17.32.35
+    fuel_compute_node03_deploy_address: 172.17.32.31
+    fuel_compute_node04_deploy_address: 172.17.32.34
+
+    # Libvirt networks for Fuel virtualized control plane
+
+    fuel_compute_node01_address: 172.17.36.241
+    fuel_compute_node02_address: 172.17.36.242
+    fuel_compute_node03_address: 172.17.36.243
+    fuel_compute_node04_address: 172.17.36.244
+
+    # openstack service addresses
+    openstack_proxy_address: 172.17.36.80
+    openstack_proxy_node01_address: 172.17.36.81
+    openstack_proxy_node02_address: 172.17.36.82
+    openstack_control_address: 172.17.36.10
+    openstack_control_node01_address: 172.17.36.11
+    openstack_control_node02_address: 172.17.36.12
+    openstack_control_node03_address: 172.17.36.13
+    openstack_database_address: 172.17.36.50
+    openstack_database_node01_address: 172.17.36.51
+    openstack_database_node02_address: 172.17.36.52
+    openstack_database_node03_address: 172.17.36.53
+    openstack_message_queue_address: 172.17.36.40
+    openstack_message_queue_node01_address: 172.17.36.41
+    openstack_message_queue_node02_address: 172.17.36.42
+    openstack_message_queue_node03_address: 172.17.36.43
+    # stacklight service addresses
+    stacklight_monitor_address: 172.17.36.70
+    stacklight_monitor_node01_address: 172.17.36.71
+    stacklight_log_address: 172.17.36.60
+    stacklight_log_node01_address: 172.17.36.61
+    stacklight_telemetry_address: 172.17.36.85
+    stacklight_telemetry_node01_address: 172.17.36.86
+
+    # openstack compute
+    openstack_compute_node01_single_address: 172.17.36.101
+    openstack_compute_node02_single_address: 172.17.36.102
+    openstack_compute_node03_single_address: 172.17.36.103
+
+    # openstack gateway
+    openstack_gateway_address: 172.17.36.253
+
+    # Interface definitions
+    linux_dhcp_interface:
+      enabled: true
+      type: eth
+      proto: dhcp
+    linux_single_interface:
+      enabled: true
+      type: eth
+      proto: static
+      address: ${_param:single_address}
+      netmask: 255.255.255.0
+      name_servers:
+        - 172.17.32.3
+        - 8.8.8.8
+        - 8.8.4.4

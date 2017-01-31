@@ -62,7 +62,7 @@ parameters:
         host: ${_param:openstack_database_address}
       message_queue:
         members:
-          - host: ${_param:openstack_message_queue_node01_address}
+          - host: ${_param:openstack:amqp:node01:mgmt_ip}
           - host: ${_param:openstack_message_queue_node02_address}
           - host: ${_param:openstack_message_queue_node03_address}
       notification:
@@ -104,7 +104,7 @@ parameters:
         tenant: service
       message_queue:
         members:
-          - host: ${_param:openstack_message_queue_node01_address}
+          - host: ${_param:openstack:amqp:node01:mgmt_ip}
           - host: ${_param:openstack_message_queue_node02_address}
           - host: ${_param:openstack_message_queue_node03_address}
       notification:
@@ -151,6 +151,6 @@ parameters:
         domain: heat
       message_queue:
         members:
-          - host: ${_param:openstack_message_queue_node01_address}
+          - host: ${_param:openstack:amqp:node01:mgmt_ip}
           - host: ${_param:openstack_message_queue_node02_address}
           - host: ${_param:openstack_message_queue_node03_address}

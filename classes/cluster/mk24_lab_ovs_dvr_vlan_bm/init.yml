@@ -2,79 +2,114 @@
 # https://docs.google.com/spreadsheets/d/17jhct4awbaoXVKp7_SdCbS-DBlikB6oEMb3gzLI4By8/edit#gid=0
 classes:
 - system.linux.system.single
-- system.openssh.server.team.tcpcloud
-- system.openssh.server.team.qa_scale
+### openssh users
+#- system.openssh.server.team.tcpcloud
+#- system.openssh.server.team.qa_scale
 #- system.openssh.server.team.mcp_qa
 - cluster.mk24_lab_ovs_dvr_vlan_bm.fuel
-- cluster.mk24_lab_ovs_dvr_vlan_bm.openstack
-- cluster.mk24_lab_ovs_dvr_vlan_bm.stacklight
-- cluster.mk24_lab_ovs_dvr_vlan_bm.stacklight.client
+#- cluster.mk24_lab_ovs_dvr_vlan_bm.openstack
+### disable stacklight
+#- cluster.mk24_lab_ovs_dvr_vlan_bm.stacklight
+#- cluster.mk24_lab_ovs_dvr_vlan_bm.stacklight.client
 parameters: 
   _param:
-    cluster_domain: mk24f.cluster
+    cluster:
+      domain: mk24f.cluster
+      name: mk24_lab_ovs_dvr_vlan_bm
+      public_ip: 172.17.36.80
     reclass_data_revision: master
-    cluster_name: mk24_lab_ovs_dvr_vlan_bm
-    cluster_public_host: 172.17.36.80
-    # fuel service addresses
 
-    fuel_config_deploy_address: 172.17.32.33  # cz8132.bud.mirantis.net
-
-    fuel_compute_node01_deploy_address: 172.17.32.36
-    fuel_compute_node02_deploy_address: 172.17.32.35
-    fuel_compute_node03_deploy_address: 172.17.32.31
-    fuel_compute_node04_deploy_address: 172.17.32.34
-
-    # Libvirt networks for Fuel virtualized control plane
-
-    fuel_compute_node01_address: 172.17.36.241
-    fuel_compute_node02_address: 172.17.36.242
-    fuel_compute_node03_address: 172.17.36.243
-    fuel_compute_node04_address: 172.17.36.244
+    kvm:
+      config:
+        node01:
+          admin_ip: 192.168.122.250
+      compute:
+        node01:
+          admin_ip: 172.17.32.36
+          mgmt_ip: 172.17.36.241
+        node02:
+          admin_ip: 172.17.32.35
+          mgmt_ip: 172.17.36.242
+        node03:
+          admin_ip: 172.17.32.31
+          mgmt_ip: 172.17.36.243
+        node04:
+          admin_ip: 172.17.32.34
+          mgmt_ip: 172.17.36.244
 
     # openstack service addresses
-    openstack_proxy_address: 172.17.36.80
-    openstack_proxy_node01_address: 172.17.36.81
-    openstack_proxy_node02_address: 172.17.36.82
-    openstack_control_address: 172.17.36.10
-    openstack_control_node01_address: 172.17.36.11
-    openstack_control_node02_address: 172.17.36.12
-    openstack_control_node03_address: 172.17.36.13
-    openstack_database_address: 172.17.36.50
-    openstack_database_node01_address: 172.17.36.51
-    openstack_database_node02_address: 172.17.36.52
-    openstack_database_node03_address: 172.17.36.53
-    openstack_message_queue_address: 172.17.36.40
-    openstack_message_queue_node01_address: 172.17.36.41
-    openstack_message_queue_node02_address: 172.17.36.42
-    openstack_message_queue_node03_address: 172.17.36.43
-    # stacklight service addresses
-    stacklight_monitor_address: 172.17.36.70
-    stacklight_monitor_node01_address: 172.17.36.71
-    stacklight_log_address: 172.17.36.60
-    stacklight_log_node01_address: 172.17.36.61
-    stacklight_telemetry_address: 172.17.36.85
-    stacklight_telemetry_node01_address: 172.17.36.86
-
+    openstack:
+      proxy:
+        mgmt_vip: 172.17.36.80
+        node01:
+          mgmt_ip: 172.17.36.81
+        node02:
+          mgmt_ip: 172.17.36.82
+      control:
+        mgmt_vip: 172.17.36.10
+        node01:
+          mgmt_ip: 172.17.36.11
+        node02:
+          mgmt_ip: 172.17.36.12
+        node03:
+          mgmt_ip: 172.17.36.13
+      database:
+        mgmt_vip: 172.17.36.50
+        node01:
+          mgmt_ip: 172.17.36.51
+        node02:
+          mgmt_ip: 172.17.36.52
+        node03:
+          mgmt_ip: 172.17.36.53
+      amqp:
+        mgmt_vip: 172.17.36.40
+        node01:
+          mgmt_ip: 172.17.36.41
+        node02:
+          mgmt_ip: 172.17.36.42
+        node03:
+          mgmt_ip: 172.17.36.43
     # openstack compute
-    openstack_compute_node01_single_address: 172.17.36.101
-    openstack_compute_node02_single_address: 172.17.36.102
-    openstack_compute_node03_single_address: 172.17.36.103
-
+      compute:
+        node01:
+          mgmt_ip: 172.17.36.101
+        node02:
+          mgmt_ip: 172.17.36.102
+        node03:
+          mgmt_ip: 172.17.36.103
     # openstack gateway
-    openstack_gateway_address: 172.17.36.253
+      gateway:
+        node01:
+          mgmt_ip: 172.17.36.253
+
+    # stacklight service addresses
+    stacklight:
+      monitor:
+        mgmt_vip: 172.17.36.70
+        node01:
+          mgmt_ip: 172.17.36.71
+      log:
+        mgmt_vip: 172.17.36.60
+        node01:
+          mgmt_ip: 172.17.36.61
+      telemetry:
+        mgmt_vip: 172.17.36.85
+        node01:
+          mgmt_ip: 172.17.36.86
+
 
     # Interface definitions
-    linux_dhcp_interface:
+    linux_admin_interface:
       enabled: true
       type: eth
       proto: dhcp
-    linux_single_interface:
-      enabled: true
-      type: eth
-      proto: static
-      address: ${_param:single_address}
-      netmask: 255.255.255.0
-      name_servers:
-        - 172.17.32.3
-        - 8.8.8.8
-        - 8.8.4.4
+#    linux_mgmt_interface:
+#      enabled: true
+#      type: eth
+#      proto: static
+#      address: ${_param:single_address}
+#      netmask: 255.255.255.0
+#      name_servers:
+#        - 172.17.32.3
+#        - 8.8.8.8
+#        - 8.8.4.4

@@ -26,7 +26,7 @@ parameters:
     nagios_notification_smtp_server: 127.0.0.1
     nagios_notification_from: 'nagios@localhost'
     nagios_notification_email: 'root@localhost'
-    stacklight_environment: ${_param:cluster_domain}
+    stacklight_environment: ${_param:cluster:domain}
     stacklight_notification_topic: stacklight_notifications
   linux:
     network:
@@ -35,20 +35,20 @@ parameters:
           address: ${_param:stacklight_monitor_node01_address}
           names:
           - mon01
-          - mon01.${_param:cluster_domain}
+          - mon01.${_param:cluster:domain}
         mon:
           address: ${_param:stacklight_monitor_address}
           names:
           - mon
-          - mon.${_param:cluster_domain}
+          - mon.${_param:cluster:domain}
         log01:
           address: ${_param:stacklight_log_node01_address}
           names:
           - log01
-          - log01.${_param:cluster_domain}
+          - log01.${_param:cluster:domain}
         log:
           address: ${_param:stacklight_log_address}
           names:
           - log
-          - log.${_param:cluster_domain}
+          - log.${_param:cluster:domain}
 
