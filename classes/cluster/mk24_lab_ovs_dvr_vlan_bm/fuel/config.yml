@@ -4,16 +4,6 @@ classes:
 - system.salt.master.pkg
 - system.salt.minion.pki.authority
 - system.reclass.storage.salt
-- system.reclass.storage.system.physical_control_cluster
-- system.reclass.storage.system.openstack_control_cluster
-- system.reclass.storage.system.openstack_compute_multi
-- system.reclass.storage.system.openstack_gateway_single
-- system.reclass.storage.system.openstack_proxy_cluster
-- system.reclass.storage.system.openstack_database_cluster
-- system.reclass.storage.system.openstack_message_queue_cluster
-- system.reclass.storage.system.stacklight_log_single
-- system.reclass.storage.system.stacklight_monitor_single
-- system.reclass.storage.system.stacklight_telemetry_single
 - cluster.mk24_lab_ovs_dvr_vlan_bm
 parameters:
   _param:
@@ -28,43 +18,175 @@ parameters:
       data_source:
         engine: local
       node:
-        openstack_control_node01:
-          classes:
-          - cluster.${_param:cluster_name}.openstack.control_init
-        openstack_database_node01:
-          classes:
-          - cluster.${_param:cluster_name}.openstack.database_init
+### openstack compute
         openstack_compute_node01:
+          name: cmp01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.compute
           params:
-            single_address: ${_param:openstack_compute_node01_single_address}
-        openstack_compute_node02:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: 172.17.33.106
+### openstack controller
+        openstack_control_node01:
+          name: ctl01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.control
           params:
-            single_address: ${_param:openstack_compute_node02_single_address}
-
-        fuel_compute_node01:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_control_node01_address}
+            keepalived_vip_priority: 103
+            opencontrail_database_id: 1
+            rabbitmq_cluster_role: master
+        openstack_control_node02:
+          name: ctl02
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.control
           params:
-            deploy_address: ${_param:fuel_compute_node01_deploy_address}
-            linux_system_codename: xenial
-
-        fuel_compute_node02:
-          params:
-            deploy_address: ${_param:fuel_compute_node02_deploy_address}
-            linux_system_codename: xenial
-
-        fuel_compute_node03:
-          params:
-            deploy_address: ${_param:fuel_compute_node03_deploy_address}
-            linux_system_codename: xenial
-
-        fuel_compute_node04:
-          params:
-            deploy_address: ${_param:fuel_compute_node04_deploy_address}
-            linux_system_codename: xenial
-
-        openstack_proxy_node01:
-          params:
-            keepalived_vip_priority: 101
-
-        openstack_proxy_node02:
-          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_control_node02_address}
             keepalived_vip_priority: 102
+            opencontrail_database_id: 2
+            rabbitmq_cluster_role: slave
+        openstack_control_node03:
+          name: ctl03
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.control
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_control_node03_address}
+            keepalived_vip_priority: 101
+            opencontrail_database_id: 3
+            rabbitmq_cluster_role: slave
+
+### openstack database
+        openstack_database_node01:
+          name: dbs01
+          domain: ${_param:cluster_domain}
+          classes:
+          - service.galera.master.cluster
+          - cluster.${_param:cluster_name}.openstack.database
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_database_node01_address}
+            keepalived_vip_priority: 103
+            mysql_cluster_role: master
+        openstack_database_node02:
+          name: dbs02
+          domain: ${_param:cluster_domain}
+          classes:  
+          - service.galera.slave.cluster
+          - cluster.${_param:cluster_name}.openstack.database
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_database_node02_address}
+            keepalived_vip_priority: 102
+            mysql_cluster_role: slave
+        openstack_database_node03:
+          name: dbs03
+          domain: ${_param:cluster_domain}
+          classes:
+          - service.galera.slave.cluster
+          - cluster.${_param:cluster_name}.openstack.database
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_database_node03_address}
+            keepalived_vip_priority: 101
+            mysql_cluster_role: slave
+
+### openstack amqp
+        openstack_message_queue_node01:
+          name: msg01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.message_queue
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_message_queue_node01_address}
+            keepalived_vip_priority: 103
+            rabbitmq_cluster_role: master
+        openstack_message_queue_node02:
+          name: msg02
+          domain: ${_param:cluster_domain}
+          classes:  
+          - cluster.${_param:cluster_name}.openstack.message_queue
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_message_queue_node02_address}
+            keepalived_vip_priority: 102
+            rabbitmq_cluster_role: slave
+        openstack_message_queue_node03:
+          name: msg03
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.message_queue
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_message_queue_node03_address}
+            keepalived_vip_priority: 101
+            rabbitmq_cluster_role: slave
+
+### openstack proxy
+        openstack_proxy_node01:
+          name: prx01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.proxy
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_proxy_node01_address}
+        openstack_proxy_node02:
+          name: prx02
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.proxy
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:openstack_proxy_node02_address}
+
+### baremetal kvm
+        fuel_compute_node01:
+          name: kvm01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.fuel.compute
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:fuel_compute_node01_address}
+            deploy_address: ${_param:fuel_compute_node01_deploy_address}
+        fuel_compute_node02:
+          name: kvm02
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.fuel.compute
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:fuel_compute_node02_address}
+            deploy_address: ${_param:fuel_compute_node02_deploy_address}
+        fuel_compute_node03:
+          name: kvm03
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.fuel.compute
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: trusty
+            single_address: ${_param:fuel_compute_node03_address}
+            deploy_address: ${_param:fuel_compute_node03_deploy_address}
